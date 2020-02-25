@@ -2,16 +2,40 @@
  * YOUR CODE HERE *
  ******************/
 
-function addMeToEnd(arr) {
-  arr.push('Colin');
+function onlyOdds(numbers) {
+  const odds = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 1) {
+      odds.push(numbers[i]);
+    }
+  }
+
+  return odds;
 }
 
-function addMeToStart(arr) {
-  arr.unshift('Colin');
+function onlyEvens(numbers) {
+  const evens = [];
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] % 2 === 0) {
+      evens.push(numbers[i]);
+    }
+  }
+
+  return evens;
 }
 
-function changeLast(arr, value) {
-  arr[arr.length - 1] = value;
+function shortNamesOnly(names) {
+  const shortOnes = [];
+
+  for (let i = 0; i < names.length; i++) {
+    if (names[i].length < 7) {
+      shortOnes.push(names[i]);
+    }
+  }
+
+  return shortOnes;
 }
 
 function changeAllValuesTo(arr, value) {
@@ -51,16 +75,16 @@ function changeNextThreeToValue(start, arr, value) {
  *********************************/
 
 
-if (typeof addMeToEnd === 'undefined') {
-  addMeToEnd = undefined;
+if (typeof onlyOdds === 'undefined') {
+  onlyOdds = undefined;
 }
 
-if (typeof addMeToStart === 'undefined') {
-  addMeToStart = undefined;
+if (typeof onlyEvens === 'undefined') {
+  onlyEvens = undefined;
 }
 
-if (typeof changeLast === 'undefined') {
-  changeLast = undefined;
+if (typeof shortNamesOnly === 'undefined') {
+  shortNamesOnly = undefined;
 }
 
 if (typeof changeAllValuesTo === 'undefined') {
@@ -77,9 +101,9 @@ if (typeof changeNextThreeToValue === 'undefined') {
 
 
 module.exports = {
-  addMeToEnd,
-  addMeToStart,
-  changeLast,
+  onlyOdds,
+  onlyEvens,
+  shortNamesOnly,
   changeAllValuesTo,
   oddOrEven,
   changeNextThreeToValue,
