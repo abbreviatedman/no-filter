@@ -2,11 +2,7 @@ const {
   onlyOdds,
   onlyEvens,
   shortNamesOnly,
-  yelledGreetings,
-  changeToInitials,
-  doubleOdd,
-  upperCaseFirstLetters,
-  add1ToLeft,
+  dNames,
 } = require('./main.js')
 
 
@@ -59,6 +55,7 @@ describe('shortNamesOnly', () => {
       'David',
       'Patrick',
       'Marc',
+      'Michael',
       'Sharod',
     ];
 
@@ -76,6 +73,7 @@ describe('shortNamesOnly', () => {
       'Denis',
       'Tyrell',
       'Wilson',
+      'Carlos',
       'Jumary',
     ];
 
@@ -83,6 +81,7 @@ describe('shortNamesOnly', () => {
       'Denis',
       'Tyrell',
       'Wilson',
+      'Carlos',
       'Jumary',
     ];
 
@@ -99,6 +98,7 @@ describe('shortNamesOnly', () => {
       'David',
       'Patrick',
       'Marc',
+      'Michael',
       'Sharod',
     ];
 
@@ -109,6 +109,7 @@ describe('shortNamesOnly', () => {
       'David',
       'Patrick',
       'Marc',
+      'Michael',
       'Sharod',
     ];
 
@@ -116,6 +117,7 @@ describe('shortNamesOnly', () => {
       'LaToddra',
       'Deaundre',
       'Denis',
+      'Carlos',
       'Tyrell',
       'Wilson',
       'Jumary',
@@ -125,6 +127,7 @@ describe('shortNamesOnly', () => {
       'LaToddra',
       'Deaundre',
       'Denis',
+      'Carlos',
       'Tyrell',
       'Wilson',
       'Jumary',
@@ -137,45 +140,89 @@ describe('shortNamesOnly', () => {
   });
 });
 
-describe('yelledGreetings', () => {
-  it(`adds an exclamation point to the end of each string`, () => {
-    expect(yelledGreetings(['hello', 'there', 'you absolute fiend'])).toEqual(['hello!', 'there!', 'you absolute fiend!']);
-  })
-})
+describe('dNames', () => {
+  it(`returns only the names that begin with d`, () => {
+    const names1 = [
+      'Colin',
+      'Mesuara',
+      'Bogdan',
+      'David',
+      'Patrick',
+      'Marc',
+      'Michael',
+      'Sharod',
+    ];
 
-describe('changeToInitials', () => {
-  it(`will return the first letters from each word`, () => {
-    expect(changeToInitials(['Colin Jaffe', 'Mesuara Kaleziq'])).toEqual(['CJ', 'MK'])
-    expect(changeToInitials(['Larry Bird', 'Robert Parrish'])).toEqual(['LB', 'RP'])
-  })
-})
+    const dNames1 = [
+      'David',
+    ];
 
-describe('doubleOdd', () => {
-  it(`doubles all odd numbers passed in`, () => {
-    expect(doubleOdd([1, 2, 3, 4, 101, 0, 32.5])).toEqual([2, 2, 6, 4, 202, 0, 32.5]);
-  })
-  
-  it(`can handle negative numbers`, () => {
-    expect(doubleOdd([-5, -1, -100, -2])).toEqual([-10, -2, -100, -2]);
-  })
-})
+    const names2 = [
+      'LaToddra',
+      'Deaundre',
+      'Denis',
+      'Carlos',
+      'Tyrell',
+      'Wilson',
+      'Jumary',
+    ];
 
-describe('upperCaseFirstLetters', () => {
-  it(`uppercases the first letter of each name (as a string) in the given array`, () => {
-    expect(upperCaseFirstLetters(['colin', 'mesuara', 'genghis', 'pak', 'ginny', 'michael', 'tenzin'])).toEqual(['Colin', 'Mesuara', 'Genghis', 'Pak', 'Ginny', 'Michael', 'Tenzin'])
-  })
+    const dNames2 = [
+      'Deaundre',
+      'Denis',
+    ];
+    
+    expect(dNames(names1)).toEqual(dNames1);
+    expect(dNames(names2)).toEqual(dNames2);
+  });
 
-  it(`lowercases the other letters of each name`, () => {
-    expect(upperCaseFirstLetters(['cOlin', 'geNghis', 'mesUara', 'ginny', 'michael', 'pak', 'tenzin'])).toEqual(['Colin', 'Genghis', 'Mesuara', 'Ginny', 'Michael', 'Pak', 'Tenzin'])
-  })
-})
+  it(`does not modify the original array`, () => {
+    const names1 = [
+      'Colin',
+      'Mesuara',
+      'Bogdan',
+      'David',
+      'Patrick',
+      'Marc',
+      'Michael',
+      'Sharod',
+    ];
 
-describe('add1ToLeft', () => {
-  it(`adds a 1 on the left side of positive numbers`, () => {
-    expect(add1ToLeft([1, 2, 30, 400])).toEqual([11, 12, 130, 1400])
-  })
+    const original1 = [
+      'Colin',
+      'Mesuara',
+      'Bogdan',
+      'David',
+      'Patrick',
+      'Marc',
+      'Michael',
+      'Sharod',
+    ];
 
-  it(`can handle negative numbers`, () => {
-    expect(add1ToLeft([-1, -50])).toEqual([-11, -150])
-  })
-})
+    const names2 = [
+      'LaToddra',
+      'Deaundre',
+      'Denis',
+      'Carlos',
+      'Tyrell',
+      'Wilson',
+      'Jumary',
+    ];
+
+    const original2 = [
+      'LaToddra',
+      'Deaundre',
+      'Denis',
+      'Carlos',
+      'Tyrell',
+      'Wilson',
+      'Jumary',
+    ];
+
+    dNames(names1);
+    dNames(names2);
+    expect(names1).toEqual(original1);
+    expect(names2).toEqual(original2);
+  });
+
+});
